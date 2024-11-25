@@ -1,0 +1,1 @@
+pip install git+https://github.com/owner/repo.git@branch#egg=package_name
