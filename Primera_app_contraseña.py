@@ -18,8 +18,9 @@ def evaluar_contrasena(contrasena):
 
 def main():
     st.title("Evaluador de Contraseñas")
-
+    
     contrasena = st.text_input("Ingrese su contraseña")
+    st.text_input("La contraseña debe usar al menos 8 caractares, incluir al menos una letra minúscula, incluir al menos una letra mayúscula, incluir al menos un número y al menos un carácter especial (@, $, !, %, *, ?, &).")
 
     if contrasena:
         if evaluar_contrasena(contrasena):
