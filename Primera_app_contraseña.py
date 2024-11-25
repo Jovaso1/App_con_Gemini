@@ -1,6 +1,10 @@
 import streamlit as st
 import re
 
+
+# Autor de la aplicación
+st.markdown("**Autor:** Esta app fue elaborada por Joseph Vargas")
+
 def evaluar_contrasena(contrasena):
     # Expresión regular para validar la contraseña
     patron = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'
@@ -10,21 +14,21 @@ def evaluar_contrasena(contrasena):
     else:
         sugerencias = []
         if len(contrasena) < 8:
-            sugerencias.append("La contraseña debe tener al menos 8 caracteres.")
+            sugerencias.append("La contraseña debe tener al menos 8 caracteres. ")
         if not re.search('[a-z]', contrasena):
-            sugerencias.append("La contraseña debe incluir al menos una letra minúscula.")
+            sugerencias.append("La contraseña debe incluir al menos una letra minúscula. ")
         if not re.search('[A-Z]', contrasena):
-            sugerencias.append("La contraseña debe incluir al menos una letra mayúscula.")
+            sugerencias.append("La contraseña debe incluir al menos una letra mayúscula. ")
         if not re.search('\d', contrasena):
-            sugerencias.append("La contraseña debe incluir al menos un número.")
+            sugerencias.append("La contraseña debe incluir al menos un número. ")
         if not re.search('[@$!%*?&]', contrasena):
-            sugerencias.append("La contraseña debe incluir al menos un caracter especial.")
+            sugerencias.append("La contraseña debe incluir al menos un caracter especial. ")
         return "La contraseña no es segura. Sugerencias: " + ", ".join(sugerencias)
 
 def main():
     st.title("Evaluador de Contraseñas")
     
-    contrasena = st.text_input("Ingrese su contraseña")
+    contrasena = st.text_input("Ingrese su contraseña:")
     
     if st.button("Evaluar"):
         resultado = evaluar_contrasena(contrasena)
