@@ -1,1 +1,1 @@
-pip install git+https://github.com/owner/repo.git@branch#egg=package_name
+pip install git+https://github.com/jovaso1/App_con_Gemini.git@branch#egg=package_name
