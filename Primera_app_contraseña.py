@@ -1,38 +1,41 @@
 import streamlit as st
 import re
-
-
 # Autor de la aplicación
 st.markdown("**Autor:** Esta app fue elaborada por Joseph Vargas")
-
 def evaluar_contrasena(contrasena):
-    # Expresión regular para validar la contraseña
+    """Evalúa la fortaleza de una contraseña dada.
+
+    Args:
+        contrasena (str): La contraseña a evaluar.
+
+    Returns:
+        bool: True si la contraseña es segura, False en caso contrario.
+    """
+
+    # Expresión regular para validar contraseñas fuertes
     patron = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$'
-    
-    if re.match(patron, contrasena):
-        return "La contraseña es segura."
-    else:
-        sugerencias = []
-        if len(contrasena) < 8:
-            sugerencias.append("La contraseña debe tener al menos 8 caracteres. ")
-        if not re.search('[a-z]', contrasena):
-            sugerencias.append("La contraseña debe incluir al menos una letra minúscula. ")
-        if not re.search('[A-Z]', contrasena):
-            sugerencias.append("La contraseña debe incluir al menos una letra mayúscula. ")
-        if not re.search('\d', contrasena):
-            sugerencias.append("La contraseña debe incluir al menos un número. ")
-        if not re.search('[@$!%*?&]', contrasena):
-            sugerencias.append("La contraseña debe incluir al menos un caracter especial. ")
-        return "La contraseña no es segura. Sugerencias: " + ", ".join(sugerencias)
+    return re.fullmatch(patron, contrasena) is not None
 
 def main():
     st.title("Evaluador de Contraseñas")
-    
-    contrasena = st.text_input("Ingrese su contraseña:")
-    
-    if st.button("Evaluar"):
-        resultado = evaluar_contrasena(contrasena)
-        st.write(resultado)
+
+    contrasena = st.text_input("Ingrese su contraseña")
+
+    if contrasena:
+        if evaluar_contrasena(contrasena):
+            st.success("¡Excelente! Tu contraseña es muy segura.")
+        else:
+            st.error("Tu contraseña no es lo suficientemente segura. Te recomendamos:")
+            if len(contrasena) < 8:
+                st.write("- Usar al menos 8 caracteres.")
+            if not re.search(r'[a-z]', contrasena):
+                st.write("- Incluir al menos una letra minúscula.")
+            if not re.search(r'[A-Z]', contrasena):
+                st.write("- Incluir al menos una letra mayúscula.")
+            if not re.search(r'\d', contrasena):
+                st.write("- Incluir al menos un número.")
+            if not re.search(r'[@$!%*?&]', contrasena):
+                st.write("- Incluir al menos un carácter especial (@, $, !, %, *, ?, &).")
 
 if __name__ == "__main__":
     main()
