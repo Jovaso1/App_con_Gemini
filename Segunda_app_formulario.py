@@ -24,10 +24,10 @@ def validar_fecha(fecha):
 def main():
     st.title("Validador de Formularios")
 
-    nombre = st.text_input("Ingrese su nombre")
-    email = st.text_input("Ingrese su correo electrónico")
-    telefono = st.text_input("Ingrese su número de teléfono")
-    fecha = st.text_input("Ingrese una fecha (AA-MM-DD)")
+    nombre = st.text_input("Ingrese su nombre:")
+    email = st.text_input("Ingrese su correo electrónico (correo@dominio.com):")
+    telefono = st.text_input("Ingrese su número de teléfono (XXX-XXX-XXXX):")
+    fecha = st.text_input("Ingrese una fecha (AA-MM-DD):")
 
     if st.button("Validar"):
         if validar_nombre(nombre):
