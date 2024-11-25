@@ -27,7 +27,7 @@ def main():
     nombre = st.text_input("Ingrese su nombre:")
     email = st.text_input("Ingrese su correo electrónico (correo@dominio.com):")
     telefono = st.text_input("Ingrese su número de teléfono (XXX-XXX-XXXX):")
-    fecha = st.text_input("Ingrese una fecha (AA-MM-DD):")
+    fecha = st.text_input("Ingrese una fecha (Use el formato Día-Mes-Año completo):")
 
     if st.button("Validar"):
         if validar_nombre(nombre):
