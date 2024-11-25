@@ -48,7 +48,7 @@ def main():
         if validar_fecha(fecha):
             st.success("Fecha válida.")
         else:
-            st.error("Fecha inválida. Use el formato AA-MM-DD.")
+            st.error("Fecha inválida. Use el formato Día-Mes-Año completo.")
 
 if __name__ == "__main__":
     main()
